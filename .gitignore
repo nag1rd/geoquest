@@ -1,12 +1,27 @@
+# IntelliJ IDEA
 .idea/
+
+# VS Code
 .vscode/
 
+# Java
 target/
+*.class
 
-node_modules/
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
 
-.env
-
+# Logs
 *.log
 
+# Node
+node_modules/
+
+# Environment
+.env
+
+# macOS
 .DS_Store
+
+# Windows
+Thumbs.db
