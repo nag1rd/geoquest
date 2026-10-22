@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GeoQuest — изучай мир</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">◎ GeoQuest<span>ИЗУЧАЙ МИР</span></a><nav aria-label="Главное меню"><button class="nav active" data-page="play">Играть</button><button class="nav" data-page="catalog">Страны</button><button class="nav" data-page="stats">Мой прогресс</button></nav><div class="level" id="level">Уровень 1 · 0 XP</div></header>
+<main>
+<div id="error" role="alert" hidden></div>
+<section id="play" class="page">
+<div id="setup"><div class="hero"><div><p class="eyebrow">МАЛЕНЬКОЕ ПУТЕШЕСТВИЕ КАЖДЫЙ ДЕНЬ</p><h1>Мир большой.<br><em>Начни с 10 вопросов.</em></h1><p class="intro">Узнавай флаги, запоминай столицы и открывай<br class="desktop"> знакомые страны с новой стороны.</p></div><div class="globe" aria-hidden="true"><span>✦</span><div>◎</div><small>ТВОЙ СЛЕДУЮЩИЙ МАРШРУТ</small></div></div>
+<div class="section-heading"><h2>Куда отправимся?</h2><span>40 стран · 6 регионов</span></div>
+<div class="modes"><button class="mode selected" data-mode="capitals" aria-pressed="true"><span class="mode-icon">⌂</span><span class="tag">ГОРОДА И СТРАНЫ</span><h3>Столицы мира</h3><p>Париж или Марсель? Найди главный город страны.</p><span class="mode-bottom">Выбрать маршрут <b>↗</b></span></button><button class="mode" data-mode="flags" aria-pressed="false"><span class="mode-icon">⚑</span><span class="tag">ЦВЕТА И СИМВОЛЫ</span><h3>Угадай флаг</h3><p>Полосы, звёзды и неожиданные сочетания.</p><span class="mode-bottom">Выбрать маршрут <b>↗</b></span></button></div>
+<div class="launch"><label for="region">Регион <select id="region"><option value="">Весь мир</option></select></label><p>До 10 вопросов · без таймера<br><small>За правильный ответ — 10 XP</small></p><button class="primary" id="start">Начать путешествие →</button></div>
+<div class="note">✧ Ошибаться можно. После каждого ответа ты увидишь правильный вариант.</div></div>
+<div id="game" hidden></div><div id="result" hidden></div>
+</section>
+<section id="catalog" class="page" hidden><p class="eyebrow">КАРМАННЫЙ АТЛАС</p><h1>Знакомься с миром</h1><p class="intro">Повтори столицы и флаги перед следующим раундом.</p><input id="search" type="search" placeholder="Найти страну, столицу или регион" aria-label="Поиск стран"><div id="countries" class="countries"></div></section>
+<section id="stats" class="page" hidden><p class="eyebrow">КАЖДЫЙ ОТВЕТ — ШАГ ВПЕРЁД</p><h1>Твой прогресс</h1><div id="stats-content"></div></section>
+</main><footer><span>◎ GeoQuest</span><span>Мир становится ближе, по одному вопросу за раз.</span><span>Сделано для любопытных ↗</span></footer>
+</body></html>

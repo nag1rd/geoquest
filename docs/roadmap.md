@@ -1,25 +1,19 @@
-MVP
+# Roadmap
 
-✅ Authentication
+## MVP — реализовано
+- [x] Spring Boot и локальная база H2
+- [x] Каталог 40 стран и поиск
+- [x] Викторины: столицы и флаги
+- [x] Выбор региона
+- [x] Серверная проверка ответов
+- [x] XP, уровни, история и статистика
+- [x] Адаптивный интерфейс
+- [x] Интеграционные тесты
+- [x] Dockerfile и Compose
 
-⬜ Interactive map
-
-⬜ Countries API
-
-⬜ Country information
-
-⬜ Quiz mode
-
-⬜ Capitals
-
-⬜ Flags
-
-⬜ Statistics
-
-⬜ XP
-
-⬜ Achievements
-
-⬜ Daily challenges
-
-⬜ Spaced repetition
+## Возможное развитие
+- [ ] Регистрация и авторизация
+- [ ] PostgreSQL и Flyway
+- [ ] Интерактивная карта
+- [ ] Интервальные повторения и ежедневные задания
+- [ ] Расширение набора стран

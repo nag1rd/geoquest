@@ -25,3 +25,5 @@ node_modules/
 
 # Windows
 Thumbs.db
+# Local game database
+data/

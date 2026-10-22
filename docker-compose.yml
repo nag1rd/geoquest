@@ -1,0 +1,10 @@
+services:
+  geoquest:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - geoquest-data:/app/data
+    restart: unless-stopped
+volumes:
+  geoquest-data:

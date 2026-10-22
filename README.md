@@ -1,75 +1,60 @@
 # 🌍 GeoQuest
 
-GeoQuest is an interactive platform for learning world geography through interactive quizzes, maps, and spaced repetition.
+Небольшая игра для изучения географии: столицы, флаги и личная статистика. Работает локально, не требует ключей API, отдельного фронтенд-сервера или аккаунта.
 
-The goal of this project is to build a production-quality full-stack application while learning geography.
+## Запуск
 
----
+Нужны **Java 21+ и Maven 3.9+**. Первый запуск Maven требует интернет для загрузки зависимостей.
 
-## 🚀 Features (Planned)
+```sh
+mvn spring-boot:run
+```
 
-- 🌎 Interactive world map
-- 🏳️ Country recognition
-- 🏛 Capital quizzes
-- 🚩 Flag quizzes
-- 📍 Country information
-- ⭐ XP & Level system
-- 🏆 Achievements
-- 🔥 Daily streak
-- 🧠 Spaced repetition algorithm
-- 📊 Learning statistics
+Откройте http://localhost:8080. Остановить сервер: Ctrl+C.
 
----
+Или с установленным Docker:
 
-## 🛠 Tech Stack
+```sh
+docker compose up --build
+```
 
-### Backend
+## Что работает
 
-- Java 21
-- Spring Boot
-- Spring Security
-- PostgreSQL
-- Flyway
-- Docker
-- JUnit 5
+- 40 стран в шести регионах; поиск по стране, столице и региону.
+- Два режима: столицы и флаги. Четыре варианта ответа, до десяти разных вопросов за раунд.
+- Выбор региона; если в нём меньше десяти стран, раунд короче.
+- Объяснение после каждого ответа; ошибочный ответ не приносит очков.
+- 10 XP за правильный ответ, новый уровень каждые 100 XP.
+- История десяти последних раундов, точность и число завершённых игр.
+- Восстановление текущего вопроса после обновления страницы, пока жива серверная сессия.
+- Адаптивная вёрстка и управление с клавиатуры.
 
-### Frontend
+## Устройство проекта
 
-- React
-- TypeScript
-- Tailwind CSS
-- React Query
-- Leaflet / MapLibre
+Java 21, Spring Boot 3.4, Spring MVC, JDBC, H2; интерфейс на HTML/CSS/JavaScript без сборщика. Это осознанно небольшой MVP: первоначальный план React/PostgreSQL/авторизации сохранён как возможное развитие, но не требуется для игры.
 
----
+- `CountryCatalog` читает набор стран из UTF-8 CSV.
+- `Quiz` отвечает за выбор вопросов, варианты и подсчёт баллов.
+- `GameController` предоставляет REST API и сохраняет завершённые результаты.
+- `src/main/resources/static` — интерфейс, который отдаёт тот же сервер.
+- `schema.sql` — идемпотентное создание таблицы результатов.
 
-## 📅 Roadmap
+Правильный ответ не приходит в API вопроса. Клиент передаёт ID вопроса и выбранный вариант, а сервер проверяет ответ. Повторная отправка закрытого вопроса отклоняется; синхронизация сессии предотвращает одновременную обработку двух ответов. Каталог при этом публичный: это учебная игра, не система защиты от читерства.
 
-### Version 0.1
-- [ ] Project initialization
-- [ ] Spring Boot
-- [ ] PostgreSQL
-- [ ] Flyway
+## Данные и ограничения
 
-### Version 0.2
-- [ ] Authentication
-- [ ] User profile
+Результаты хранятся в `data/geoquest.mv.db` (Docker — именованный том). Перезапуск приложения сохраняет историю, но сбрасывает незавершённые игры. Очки незавершённого раунда не записываются. Сессия истекает через час бездействия.
 
-### Version 0.3
-- [ ] Countries API
-- [ ] Interactive map
+UUID профиля хранится в localStorage браузера. Это **не авторизация**: приложение рассчитано на локальное использование, не на хранение приватных данных. Очистка данных браузера создаёт новый профиль, другие браузеры имеют отдельную историю. Если localStorage недоступен, профиль действует до обновления страницы. Несколько вкладок используют одну игровую сессию.
 
-### Version 0.4
-- [ ] Quiz mode
-- [ ] Statistics
+Флаги представлены Unicode emoji; отображение зависит от ОС и шрифтов (на некоторых системах вместо флага виден код страны). В наборе 40 стран, а не полный атлас. Карты, регистрация, ежедневные задания и интервальные повторения пока не реализованы.
 
-### Version 1.0
-- [ ] Achievements
-- [ ] Daily challenges
-- [ ] Spaced repetition
+## Проверки и сборка
 
----
+```sh
+mvn test
+mvn package
+java -jar target/geoquest-1.0.0.jar
+```
 
-## 📄 License
 
-MIT
